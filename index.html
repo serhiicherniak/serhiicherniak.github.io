@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="myApp" >
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!-- Meta, title, CSS, favicons, etc. -->
@@ -24,15 +24,17 @@
   <link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
   <!-- bootstrap-daterangepicker -->
   <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-  <!-- Custom Theme Style -->
-  <link href="build/css/custom.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
   <script src="js/app.js"></script>
   <script src="js/bank-ctrl.js"></script>
+  <!-- Custom Theme Style -->
+  <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md" ng-controller="bankCtrl">
-<div ng-view=""></div>
+
 <div class="container body">
   <div class="main_container">
     <div class="col-md-3 left_col">
@@ -50,7 +52,7 @@
           </div>
           <div class="profile_info">
             <span>Привіт,</span>
-            <h2>Василь Пупкін</h2>
+            <h2>{{currentUser.name}}</h2>
           </div>
         </div>
         <!-- /menu profile quick info -->
@@ -65,13 +67,12 @@
                 <ul class="nav child_menu">
                   <li><a href="index.html">Інфо</a></li>
                   <li><a href="calendar.html">Календар</a></li>
-                  <li><a href="login.html">Зайти в систему</a></li>
-                  <li><a href="login.html#signup">Реєстрація в системі</a></li>
                 </ul>
               </li>
               <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                   <li><a href="form_reg_fop.html">Реєстрація ФОП</a></li>
+                  <li><a href="form_count_tax.html">Обрахунок податку</a></li>
                   <!--<li><a href="form.html">General Form</a></li>-->
                   <!--<li><a href="form_advanced.html">Advanced Components</a></li>-->
                   <!--<li><a href="form_validation.html">Form Validation</a></li>-->
@@ -89,7 +90,7 @@
         <!-- /sidebar menu -->
 
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
+        <div class=" ">
           <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
             <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
           <!--</a>-->
@@ -119,7 +120,7 @@
 
             <li class="">
               <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="images/img.jpg" alt="">Василь Пупкін
+                <img src="images/img.jpg" alt="">{{currentUser.name}}
                 <span class=" fa fa-angle-down"></span>
               </a>
               <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -131,7 +132,7 @@
                   </a>
                 </li>
                 <li><a href="javascript:;">Допомога</a></li>
-                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Вийти з системи</a></li>
+                <li><a ng-click="logout()" href="login.html"><i class="fa fa-sign-out pull-right"></i> Вийти з системи</a></li>
               </ul>
             </li>
 

@@ -1,14 +1,14 @@
 'use strict';
-angular.module("myApp", ["ngRoute"])
+angular.module("myApp", ["ngRoute",'ngCookies'])
     .config( function ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl : "view/main.html"
+                templateUrl : "index.html"
             })
             .when("/calendar", {
-                templateUrl : "calendar1.html"
+                templateUrl : "calendar.html"
             })
             .when("/login", {
-                templateUrl : "view/login.html"
+                templateUrl : "login.html"
             });
     });
