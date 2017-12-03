@@ -29,7 +29,7 @@ angular.module('myApp')
                 $scope.loginError = 0;
                 var pathname = window.location.pathname.split('/');
                 pathname.pop();
-                pathname.push('index.html');
+                pathname.push('index_main.html');
                 window.location.hash='';
                 window.location.pathname=pathname.join('/');
             } else{
