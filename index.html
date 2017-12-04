@@ -27,17 +27,17 @@
     <script src="js/bank-ctrl.js"></script>
   </head>
 
-  <body class="user.png" ng-controller="bankCtrl">
+  <body class="login" ng-controller="bankCtrl">
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
 
-      <div class="user.png_wrapper">
-        <div class="animate form user.png_form">
-          <section class="user.png_content">
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
             <form>
               <h1>Війти в систему</h1>
-              <h3 class="label-danger" ng-if="user.pngError">{{user.pngError}}</h3>
+              <h3 class="label-danger" ng-if="loginError">{{loginError}}</h3>
               <div>
                 <input type="text" class="form-control" ng-model="user.email" placeholder="email" required="" />
               </div>
@@ -45,7 +45,7 @@
                 <input type="password" class="form-control" ng-model="user.password" placeholder="Пароль" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit"  ng-click="user.png(user)">Війти в систему</a>
+                <a class="btn btn-default submit"  ng-click="login(user)">Війти в систему</a>
                 <!--<a class="reset_pass" href="#">Lost your password?</a>-->
               </div>
 
@@ -69,7 +69,7 @@
         </div>
 
         <div id="register" class="animate form registration_form">
-          <section class="user.png_content">
+          <section class="login_content">
             <form>
               <h1>Зареєструватися в системі</h1>
               <div>
