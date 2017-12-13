@@ -30,6 +30,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/niklasvh/html2canvas/0.5.0-alpha2/dist/html2canvas.min.js"></script>
+  <script src="js/jspdf.debug.js"></script>
+  <script src="js/saveHtmlToPdf.js"></script>
+
   <script src="js/app.js"></script>
   <script src="js/bank-ctrl.js"></script>
     <!-- Custom Theme Style -->
@@ -251,30 +257,27 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  <div class="x_content" >
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form id="demo-form2"  data-parsley-validate class="form-horizontal form-label-left">
+                      <div pdf-save-content="idOne">
+                      <div pdf-page="1">
                       <h2>Відомості про фізичну особу – підприємця</h2>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Прівище <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Прізвище <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="first-name" ng-model="reg_fop.lastName" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ім'я <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" id="last-name" ng-model="reg_fop.name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">По-батькові</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-                        </div>
-                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Стать</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -325,19 +328,20 @@
 
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Країна громадянства<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Країна громадянства
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
+                      </div><div pdf-page="2">
                       <div class="ln_solid"></div>
                       <h2>Місце проживання/місцезнаходження фізичної особи – підприємця:</h2>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Поштовий індекс<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Поштовий індекс
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
@@ -356,7 +360,7 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Тип<span class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Тип</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <div id="type" class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary " data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
@@ -378,7 +382,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
 
@@ -390,10 +394,10 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Вулиця (інший тип елемента вулично-дорожньої мережі) – зазначається разом з назвою<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Вулиця (інший тип елемента вулично-дорожньої мережі) – зазначається разом з назвою
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
@@ -432,6 +436,7 @@
                         </div>
                       </div>
                       <div class="ln_solid"></div>
+                      </div>
                       <h2>Види економічної діяльності фізичної особи – підприємця</h2>
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Код виду економічної діяльності<span class="required">*</span>
@@ -440,7 +445,7 @@
                           <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-
+                      <div pdf-page="3">
                       <div class="ln_solid"></div>
                       <h2>Відомості про осіб, які можуть вчиняти дії від імені фізичної особи – підприємця, у тому числі підписувати договори тощо</h2>
                       <div class="form-group">
@@ -501,19 +506,20 @@
 
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Наявність обмежень щодо представництва від імені фізичної особи – підприємця<span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Наявність обмежень щодо представництва від імені фізичної особи – підприємця
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text"  name="last-name" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
+                      </div><div pdf-page="4">
                       <div class="ln_solid"></div>
                       <h2>Інформація для здійснення зв’язку з фізичною особою – підприємцем</h2>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Телефон 1 <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Телефон 1
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
@@ -524,32 +530,49 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Факс  <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Факс
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="number"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email  <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Інше  <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Інше
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text"  name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text"  name="last-name"  class="form-control col-md-7 col-xs-12">
                         </div>
+                      </div>
+                      </div>
                       </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button class="btn btn-primary" type="button">Cancel</button>
 						  <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
+                          <div pdf-save-button="idOne" pdf-name="форма_регістрації.pdf" class="btn btn-success">Зберегти в PDF файл</div>
+
+                          <!-- below block will be saved as pdf -->
+                  <div style="display: none">
+                          <!--<div pdf-save-content="idOne" >-->
+                            <!--Hello Someone-->
+                            <!--вівмм-->
+                            <!--мім-->
+                            <!--івмів-->
+                            <!--мівм-->
+                            <!--ів-->
+                            <!--мі-->
+                            <!--вм-->
+                            <!--івм-->
+                          <!--</div>-->
+                        </div>
                         </div>
                       </div>
 

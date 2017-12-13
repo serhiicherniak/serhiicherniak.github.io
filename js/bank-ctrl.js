@@ -81,5 +81,8 @@ angular.module('myApp')
             $rootScope.currentUser = user;
             $scope.isInfoSaved = true;
         };
+        $scope.saveToPdfRegFop = function (regFop) {
+            console.log(regFop);
+        };
 
     });

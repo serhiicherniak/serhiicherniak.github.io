@@ -1,5 +1,5 @@
 'use strict';
-angular.module("myApp", ["ngRoute",'ngCookies'])
+angular.module("myApp", ["ngRoute",'ngCookies', 'htmlToPdfSave'])
     .config( function ($routeProvider) {
         $routeProvider
             .when("/", {
