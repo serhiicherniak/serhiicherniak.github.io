@@ -62,4 +62,24 @@ angular.module('myApp')
             return user;
         };
 
+        $scope.saveUser = function (user){
+
+            var users = $cookies.getObject('users');
+            if(!users){
+                users = [];
+            };
+
+
+            var oldUser = $scope.findUserByName(users, $rootScope.currentUser.email);
+            var i = users.indexOf(oldUser);
+            if(i !== -1) {
+                users.splice(i, 1);
+            }
+            users.push(user);
+            $cookies.putObject('users', users);
+            $cookies.putObject('currentUser', user);
+            $rootScope.currentUser = user;
+            $scope.isInfoSaved = true;
+        };
+
     });
